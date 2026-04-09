@@ -7,15 +7,17 @@ function initCanvas() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
     particles = [];
-    let numStars = window.innerWidth < 768 ? 50 : 150;
+    
+    // মোবাইলে পারফরম্যান্স ঠিক রাখতে তারার সংখ্যা কমিয়ে দেওয়া হলো
+    let numStars = window.innerWidth < 768 ? 40 : 120; 
     
     for (let i = 0; i < numStars; i++) {
         particles.push({
             x: Math.random() * w,
             y: Math.random() * h,
-            r: Math.random() * 2,
-            dx: (Math.random() - 0.5) * 0.5,
-            dy: (Math.random() - 0.5) * 0.5
+            r: Math.random() * 1.5 + 0.5,
+            dx: (Math.random() - 0.5) * 0.4,
+            dy: (Math.random() - 0.5) * 0.4
         });
     }
 }
@@ -43,7 +45,10 @@ function drawStars() {
             let dy = particles[i].y - particles[j].y;
             let dist = Math.sqrt(dx*dx + dy*dy);
             
-            if(dist < 100) {
+            // মোবাইলের জন্য দূরত্ব ক্যালকুলেশন অপ্টিমাইজ করা
+            let connectDist = w < 768 ? 70 : 120;
+            
+            if(dist < connectDist) {
                 ctx.beginPath();
                 ctx.moveTo(particles[i].x, particles[i].y);
                 ctx.lineTo(particles[j].x, particles[j].y);
@@ -65,23 +70,36 @@ gsap.utils.toArray('.memory-card').forEach(card => {
     gsap.to(card, {
         scrollTrigger: {
             trigger: card,
-            start: "top 80%",
+            start: "top 85%", // মোবাইলে একটু আগে ট্রিগার হবে
         },
         opacity: 1,
         y: 0,
-        duration: 1.2,
-        ease: "power3.out"
+        duration: 1,
+        ease: "power2.out"
     });
 });
 
 // 3. Typewriter Effect
-const poem = `"প্রিয় রুমি,
+const poem = `তোমার সাথে সন্ধ্যেবেলায়
+ছাদে বসে হাওয়া খাবো।
+সে কথা থাক বা না থাক,
+আকাশের দিকে তাকিয়ে
+তারাদের নিশ্চুপ কোলাহল শুনবো।
 
-জানি না কতটা ভালোবাসলে ভালোবাসা পূর্ণ হয়, তবে আমি তোমাকে আমার সবটুকু দিয়ে ভালোবাসি। আমার প্রতিটা নিশ্বাস, প্রতিটা ভাবনা শুধু তোমাকে ঘিরে।
+আমি গুনগুন করে গান গাইবো,
+তুমি আস্তে করে আলতো ছোঁয়ায়
+মাথাটা আমার কাঁধে রেখে-
+আমার সাথে সুর মেলাবে।
 
-তুমি আমার সুখ, আমার শান্তি, আমার সব অভিমান আর ভালোবাসার ঠিকানা। সারাজীবন এভাবেই থেকো আমার হয়ে।
+তখন তুমি না হয় আলিংগনে
+আমার বুকের ধুকপুকানি শুনবে,
+আর আমি তোমার শ্বাস গুনবো।
+তাও যদি দূরত্ব না দূর হয়,
+চোখে চোখ রেখে
+সেটাও মিটিয়ে দেবো।
 
-I Love You, Rumi ❤️."`;
+ব্যাস, এরকম একটা সন্ধ্যেবেলা চাই,
+আর আমার পাশে শুধু তোমায়।।`;
 
 let i = 0;
 const speed = 50; 
@@ -90,7 +108,7 @@ let typed = false;
 
 ScrollTrigger.create({
     trigger: ".poetry-section",
-    start: "top 60%",
+    start: "top 65%",
     onEnter: () => {
         if(!typed) {
             typeWriter();
@@ -107,11 +125,11 @@ function typeWriter() {
             typeTarget.innerHTML += poem.charAt(i);
         }
         i++;
-        setTimeout(typeWriter, Math.random() * speed + 30);
+        setTimeout(typeWriter, Math.random() * speed + 20);
     }
 }
 
-// 4. Golden Envelope Toggle
+// 4. Golden Envelope Toggle (Touch Friendly)
 function toggleEnvelope() {
     const env = document.getElementById('envelope');
     env.classList.toggle('open');
