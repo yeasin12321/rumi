@@ -1,0 +1,57 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: #fff; overflow-x: hidden; }
+
+/* Canvas Background */
+#starfield { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: radial-gradient(circle at center, #111 0%, #000 100%); }
+
+/* Typography */
+.main-heading { font-family: 'Cinzel', serif; font-size: 6rem; color: #d4af37; text-shadow: 0 0 20px rgba(212,175,55,0.5); letter-spacing: 5px; margin: 10px 0; }
+.sub-heading { font-size: 1.2rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; }
+.section-title { font-family: 'Cinzel', serif; font-size: 3rem; text-align: center; color: #d4af37; margin-bottom: 60px; }
+
+/* Hero Section */
+.hero-section { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+.age-text { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #ffb86c; margin-top: 10px; }
+.scroll-indicator { position: absolute; bottom: 40px; color: #888; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; }
+.mouse { width: 25px; height: 40px; border: 2px solid #d4af37; border-radius: 15px; margin-top: 10px; position: relative; }
+.wheel { width: 3px; height: 8px; background: #d4af37; border-radius: 2px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); animation: scrollMouse 1.5s infinite; }
+@keyframes scrollMouse { 0% { top: 5px; opacity: 1; } 100% { top: 20px; opacity: 0; } }
+
+/* Memory Parallax */
+.memory-lane { padding: 100px 20px; max-width: 1000px; margin: 0 auto; }
+.memory-card { display: flex; align-items: center; gap: 40px; margin-bottom: 80px; opacity: 0; transform: translateY(50px); }
+.memory-card.reverse { flex-direction: row-reverse; }
+
+/* Image Box Styles */
+.img-box { width: 50%; height: 350px; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.4s; overflow: hidden; }
+.img-box:hover { border-color: #d4af37; transform: scale(1.02); box-shadow: 0 15px 40px rgba(212,175,55,0.2); }
+.img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; transition: transform 0.5s ease; }
+.img-box:hover img { transform: scale(1.05); }
+
+/* Text Box Styles */
+.text-box { width: 50%; }
+.text-box h3 { font-family: 'Cinzel', serif; font-size: 2rem; color: #d4af37; margin-bottom: 15px; }
+.text-box p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
+
+/* Typewriter Poetry */
+.poetry-section { padding: 100px 20px; text-align: center; background: rgba(10,10,10,0.8); border-top: 1px solid #222; border-bottom: 1px solid #222; }
+.typewriter-container { max-width: 800px; margin: 0 auto; min-height: 150px; font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 2; font-style: italic; color: #eee; }
+
+/* The Golden Envelope Reveal */
+.reveal-section { padding: 100px 20px 200px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.envelope-wrapper { width: 320px; height: 200px; position: relative; cursor: pointer; perspective: 1000px; }
+.envelope { width: 100%; height: 100%; position: absolute; background: #b8962e; border-radius: 5px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); transition: 0.5s; }
+.envelope::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 160px solid #d4af37; border-right: 160px solid #d4af37; border-bottom: 100px solid #a88523; border-top: 100px solid transparent; z-index: 3; pointer-events: none; }
+.flap { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 160px solid transparent; border-right: 160px solid transparent; border-top: 100px solid #e6c555; z-index: 4; transform-origin: top; transition: transform 0.6s ease-in-out; }
+.letter { position: absolute; bottom: 0; left: 5%; width: 90%; height: 90%; background: #fff; border-radius: 5px; z-index: 2; padding: 20px; color: #222; font-family: 'Montserrat', sans-serif; font-size: 1rem; box-shadow: 0 0 10px rgba(0,0,0,0.2); transition: transform 0.6s ease-in-out; display: flex; flex-direction: column; justify-content: center; }
+
+/* Open State */
+.envelope.open .flap { transform: rotateX(180deg); z-index: 1; }
+.envelope.open .letter { transform: translateY(-130px); z-index: 5; height: 250px; }
+
+@media (max-width: 768px) {
+    .main-heading { font-size: 4rem; }
+    .memory-card, .memory-card.reverse { flex-direction: column; text-align: center; }
+    .img-box { width: 100%; height: 250px; }
+    .text-box { width: 100%; }
+}

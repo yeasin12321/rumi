@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th, Rumi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <canvas id="starfield"></canvas>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h3 class="sub-heading">A Universe Created For</h3>
+            <h1 class="main-heading">Rumi</h1>
+            <p class="age-text">Celebrating 18 Years of Magic</p>
+            <div class="scroll-indicator">
+                <span>Discover Our Journey</span>
+                <div class="mouse"><div class="wheel"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="memory-lane">
+        <h2 class="section-title">Constellations of Us</h2>
+        <div class="memory-container">
+            
+            <div class="memory-card">
+                <div class="img-box">
+                    <img src="1.jpg" alt="Memory 1">
+                </div>
+                <div class="text-box">
+                    <h3>The First Glance</h3>
+                    <p>When time stopped and my universe found its center.</p>
+                </div>
+            </div>
+
+            <div class="memory-card reverse">
+                <div class="img-box">
+                    <img src="2.jpg" alt="Memory 2">
+                </div>
+                <div class="text-box">
+                    <h3>A Thousand Smiles</h3>
+                    <p>Every laugh of yours is a star in my sky.</p>
+                </div>
+            </div>
+
+            <div class="memory-card">
+                <div class="img-box">
+                    <img src="3.jpg" alt="Memory 3">
+                </div>
+                <div class="text-box">
+                    <h3>Forever Intertwined</h3>
+                    <p>Walking through life, hand in hand.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="poetry-section">
+        <h2 class="section-title">Echoes of My Heart</h2>
+        <div class="typewriter-container">
+            <p id="typewriter-text"></p>
+        </div>
+    </section>
+
+    <section class="reveal-section">
+        <h2 class="section-title">A Secret For You</h2>
+        <p style="color: #aaa; margin-bottom: 40px; font-style: italic;">Tap the envelope to open...</p>
+        
+        <div class="envelope-wrapper" onclick="toggleEnvelope()">
+            <div class="envelope" id="envelope">
+                <div class="flap"></div>
+                <div class="letter">
+                    <h3 style="font-family: 'Great Vibes', cursive; color: #d4af37; font-size: 2rem;">My Dearest Rumi,</h3>
+                    <p>"তোমার সাথে সন্ধ্যেবেলায়
+ছাদে বসে হাওয়া খাবো।
+সে কথা থাক বা না থাক,
+আকাশের দিকে তাকিয়ে
+তারাদের নিশ্চুপ কোলাহল শুনবো।
+
+আমি গুনগুন করে গান গাইবো,
+তুমি আস্তে করে আলতো ছোঁয়ায়
+মাথাটা আমার কাঁধে রেখে-
+আমার সাথে সুর মেলাবে।
+
+তখন তুমি না হয় আলিংগনে
+আমার বুকের ধুকপুকানি শুনবে,
+আর আমি তোমার শ্বাস গুনবো।
+তাও যদি দূরত্ব না দূর হয়,
+চোখে চোখ রেখে
+সেটাও মিটিয়ে দেবো।
+
+ব্যাস, এরকম একটা সন্ধ্যেবেলা চাই,
+আর আমার পাশে শুধু তোমায়।।"</p>
+                    <p style="text-align: right; margin-top: 20px; font-weight: bold;">- ইয়াছিন</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
