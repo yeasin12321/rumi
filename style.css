@@ -17,124 +17,65 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .wheel { width: 3px; height: 8px; background: #d4af37; border-radius: 2px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); animation: scrollMouse 1.5s infinite; }
 @keyframes scrollMouse { 0% { top: 5px; opacity: 1; } 100% { top: 15px; opacity: 0; } }
 
-/* Memory Parallax */
+/* Section 1: Timeline */
+.timeline-section { padding: 80px 20px; max-width: 800px; margin: 0 auto; }
+.timeline { position: relative; border-left: 2px solid #d4af37; padding-left: 30px; }
+.timeline-item { position: relative; margin-bottom: 50px; opacity: 0; transform: translateX(-30px); }
+.timeline-dot { position: absolute; left: -41px; top: 5px; width: 20px; height: 20px; background: #d4af37; border-radius: 50%; box-shadow: 0 0 10px #d4af37; }
+.timeline-content h3 { color: #d4af37; font-family: 'Cinzel', serif; margin-bottom: 10px; }
+
+/* Memory Lane */
 .memory-lane { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
 .memory-card { display: flex; align-items: center; gap: 40px; margin-bottom: 80px; opacity: 0; transform: translateY(50px); }
 .memory-card.reverse { flex-direction: row-reverse; }
-
-.img-box { width: 50%; height: 350px; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; }
-.img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; transition: transform 0.5s ease; }
-.img-box:hover img { transform: scale(1.05); }
-
+.img-box { width: 50%; height: 350px; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; overflow: hidden; }
+.img-box img { width: 100%; height: 100%; object-fit: cover; }
 .text-box { width: 50%; }
 .text-box h3 { font-family: 'Cinzel', serif; font-size: 2rem; color: #d4af37; margin-bottom: 15px; }
 .text-box p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 
-/* Typewriter Poetry */
-.poetry-section { padding: 80px 20px; text-align: center; background: rgba(10,10,10,0.8); border-top: 1px solid #222; border-bottom: 1px solid #222; }
-.typewriter-container { max-width: 800px; margin: 0 auto; min-height: 150px; font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 2; font-style: italic; color: #eee; }
+/* Section 2: 18 Reasons */
+.reasons-section { padding: 80px 20px; background: rgba(255,255,255,0.02); }
+.reasons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+.reason-card { background: #111; border: 1px solid #d4af3733; padding: 20px; border-radius: 10px; text-align: center; transition: 0.3s; cursor: pointer; }
+.reason-card:hover { border-color: #d4af37; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212,175,55,0.1); }
+.reason-num { color: #d4af37; font-size: 1.5rem; font-weight: bold; display: block; margin-bottom: 10px; }
+.reason-text { font-size: 0.9rem; color: #ccc; }
 
-/* Eternal Vow Section */
-.vow-section {
-    padding: 100px 20px;
-    background: linear-gradient(to bottom, #0a0a0a, #000);
-    text-align: center;
-}
+/* Section 3: Muse (Audio) */
+.muse-section { padding: 100px 20px 50px; text-align: center; }
+.audio-box { margin-bottom: 40px; }
+.audio-box p { color: #aaa; margin-bottom: 15px; font-style: italic; font-size: 1.2rem; }
+audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; }
 
-.vow-container {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
+/* Original: Echoes of My Heart (Typewriter) */
+.poetry-section { padding: 50px 20px 80px; text-align: center; background: rgba(10,10,10,0.8); border-top: 1px solid #222; border-bottom: 1px solid #222; }
+.typewriter-container { max-width: 800px; margin: 0 auto; min-height: 150px; font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 2; font-style: italic; color: #eee; text-align: left;}
 
-.vow-image {
-    width: 45%;
-    height: 400px;
-    position: relative;
-}
+/* Section 5: Bucket List */
+.bucket-list { padding: 80px 20px; }
+.bucket-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.bucket-item { background: rgba(212, 175, 55, 0.05); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid transparent; transition: 0.4s; }
+.bucket-item:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.1); transform: scale(1.02); }
+.bucket-item span { font-size: 2rem; }
 
-.vow-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+/* Eternal Vow */
+.vow-section { padding: 100px 20px; text-align: center; }
+.vow-container { max-width: 900px; margin: 0 auto; display: flex; align-items: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px; overflow: hidden; }
+.vow-image { width: 45%; height: 400px; position: relative; }
+.vow-image img { width: 100%; height: 100%; object-fit: cover; }
+.image-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, transparent, rgba(10,10,10,0.8)); }
+.vow-content { width: 55%; padding: 40px; text-align: left; }
+.vow-signature .name { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #d4af37; }
+.vow-signature .heart { color: #ff4d4d; animation: pulse 1.5s infinite; display: inline-block; }
 
-.image-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to right, transparent, rgba(10,10,10,0.8));
-}
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
 
-.vow-content {
-    width: 55%;
-    padding: 40px;
-    text-align: left;
-}
-
-.vow-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #eee;
-    font-style: italic;
-    margin-bottom: 30px;
-}
-
-.vow-signature {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.vow-signature .name {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2rem;
-    color: #d4af37;
-}
-
-.vow-signature .heart {
-    color: #ff4d4d;
-    font-size: 1.5rem;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-/* =========================================================
-   Mobile Optimization 
-   ========================================================= */
+/* Mobile Fixes */
 @media (max-width: 768px) {
-    .main-heading { font-size: 3.5rem; letter-spacing: 2px; }
-    .sub-heading { font-size: 0.9rem; letter-spacing: 2px; }
-    .age-text { font-size: 2rem; }
-    .section-title { font-size: 2rem; margin-bottom: 40px; }
-    
-    .memory-lane { padding: 50px 15px; }
-    .memory-card, .memory-card.reverse { flex-direction: column; text-align: center; gap: 20px; margin-bottom: 60px; }
-    
-    .img-box { width: 100%; height: 260px; }
-    .text-box { width: 100%; }
-    .text-box h3 { font-size: 1.6rem; }
-    .text-box p { font-size: 1rem; }
-    
-    .poetry-section { padding: 60px 15px; }
-    .typewriter-container { font-size: 1.1rem; line-height: 1.8; min-height: 120px; }
-    
-    /* Vow Section Mobile Adjustments */
-    .vow-section { padding: 60px 15px 100px; }
-    .vow-container { flex-direction: column; }
-    .vow-image { width: 100%; height: 300px; }
-    .image-overlay { background: linear-gradient(to bottom, transparent, rgba(10,10,10,0.9)); }
-    .vow-content { width: 100%; padding: 30px; text-align: center; }
-    .vow-signature { justify-content: center; }
+    .main-heading { font-size: 3rem; }
+    .memory-card, .vow-container { flex-direction: column; }
+    .img-box, .text-box, .vow-image, .vow-content { width: 100%; }
+    .vow-image { height: 250px; }
+    .typewriter-container { font-size: 1.1rem; line-height: 1.8; }
 }
