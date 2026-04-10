@@ -24,6 +24,15 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .timeline-dot { position: absolute; left: -41px; top: 5px; width: 20px; height: 20px; background: #d4af37; border-radius: 50%; box-shadow: 0 0 10px #d4af37; }
 .timeline-content h3 { color: #d4af37; font-family: 'Cinzel', serif; margin-bottom: 10px; }
 
+/* NEW 1: Counter Section */
+.counter-section { padding: 80px 20px; text-align: center; background: rgba(10, 10, 10, 0.6); border-top: 1px solid #222; border-bottom: 1px solid #222;}
+.counter-container { display: flex; justify-content: center; gap: 20px; max-width: 600px; margin: 0 auto 20px; }
+.time-box { background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; padding: 20px; width: 110px; transition: 0.3s; }
+.time-box:hover { border-color: #d4af37; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(212,175,55,0.1); }
+.time-box span { font-size: 2.5rem; color: #d4af37; font-family: 'Cinzel', serif; font-weight: bold; }
+.time-box p { font-size: 0.9rem; color: #aaa; text-transform: uppercase; margin-top: 5px; }
+.counter-text { font-style: italic; color: #ccc; font-size: 1.1rem; }
+
 /* Memory Lane */
 .memory-lane { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
 .memory-card { display: flex; align-items: center; gap: 40px; margin-bottom: 80px; opacity: 0; transform: translateY(50px); }
@@ -34,7 +43,19 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .text-box h3 { font-family: 'Cinzel', serif; font-size: 2rem; color: #d4af37; margin-bottom: 15px; }
 .text-box p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 
-/* Section 2: 18 Reasons */
+/* NEW 2: Promises (Flip Cards) */
+.promises-section { padding: 80px 20px; text-align: center; }
+.promises-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+.flip-card { background-color: transparent; width: 280px; height: 300px; perspective: 1000px; }
+.flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; display: flex; align-items: center; justify-content: center; padding: 20px; box-shadow: 0 4px 15px rgba(212,175,55,0.2); }
+.flip-card-front { background: rgba(20,20,20,0.9); border: 1px solid #d4af37; }
+.flip-card-front h3 { color: #d4af37; font-family: 'Cinzel', serif; font-size: 1.8rem; }
+.flip-card-back { background: #d4af37; color: #111; transform: rotateY(180deg); }
+.flip-card-back p { font-size: 1.2rem; font-weight: bold; line-height: 1.6; }
+
+/* Section: 18 Reasons */
 .reasons-section { padding: 80px 20px; background: rgba(255,255,255,0.02); }
 .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
 .reason-card { background: #111; border: 1px solid #d4af3733; padding: 20px; border-radius: 10px; text-align: center; transition: 0.3s; cursor: pointer; }
@@ -42,22 +63,50 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .reason-num { color: #d4af37; font-size: 1.5rem; font-weight: bold; display: block; margin-bottom: 10px; }
 .reason-text { font-size: 0.9rem; color: #ccc; }
 
-/* Section 3: Muse (Audio) */
+/* NEW 3: Love Notes */
+.love-notes-section { padding: 80px 20px; text-align: center; }
+.notes-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+.note { width: 200px; min-height: 200px; padding: 20px; font-family: 'Great Vibes', cursive; font-size: 1.6rem; color: #333; line-height: 1.4; display: flex; align-items: center; text-align: center; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); transform: rotate(-5deg); transition: 0.3s; cursor: pointer; }
+.note:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
+.note.yellow { background: #fdfd96; transform: rotate(3deg); }
+.note.pink { background: #ffb7b2; transform: rotate(-4deg); }
+.note.blue { background: #a2cffe; transform: rotate(5deg); }
+.note.green { background: #b8e0d2; transform: rotate(-2deg); }
+
+/* Muse (Audio) */
 .muse-section { padding: 100px 20px 50px; text-align: center; }
-.audio-box { margin-bottom: 40px; }
 .audio-box p { color: #aaa; margin-bottom: 15px; font-style: italic; font-size: 1.2rem; }
 audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; max-width: 100%; }
 
-/* Original: Echoes of My Heart (Typewriter) */
+/* Poetry (Typewriter) */
 .poetry-section { padding: 50px 20px 80px; text-align: center; background: rgba(10,10,10,0.8); border-top: 1px solid #222; border-bottom: 1px solid #222; }
 .typewriter-container { max-width: 800px; margin: 0 auto; min-height: 150px; font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 2; font-style: italic; color: #eee; text-align: left; }
 
-/* Section 5: Bucket List */
+/* NEW 4: Secret Message Section */
+.secret-section { padding: 100px 20px; text-align: center; }
+.envelope-container { cursor: pointer; position: relative; max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.02); border: 1px dashed #d4af37; padding: 40px; border-radius: 15px; transition: 0.4s; }
+.envelope-container:hover { background: rgba(212, 175, 55, 0.05); }
+.click-text { color: #d4af37; font-family: 'Cinzel', serif; font-size: 1.5rem; animation: pulse 2s infinite; }
+.secret-letter { display: none; margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(212,175,55,0.2); }
+.secret-letter.show { display: block; animation: fadeIn 1s ease-in-out; }
+.secret-letter p { font-size: 1.2rem; color: #eee; font-style: italic; line-height: 1.8; }
+
+/* Bucket List */
 .bucket-list { padding: 80px 20px; }
 .bucket-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
 .bucket-item { background: rgba(212, 175, 55, 0.05); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid transparent; transition: 0.4s; }
 .bucket-item:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.1); transform: scale(1.02); }
 .bucket-item span { font-size: 2rem; flex-shrink: 0; }
+
+/* NEW 5: Game Section (Catch me) */
+.game-section { padding: 80px 20px; text-align: center; position: relative; min-height: 400px;}
+.game-question { font-size: 2rem; color: #d4af37; font-family: 'Cinzel', serif; margin-bottom: 40px; }
+.game-buttons { position: relative; height: 100px; }
+.btn { padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 30px; cursor: pointer; transition: 0.2s; font-family: 'Montserrat', sans-serif; }
+.yes-btn { background: #d4af37; color: #000; margin-right: 20px; box-shadow: 0 0 15px rgba(212,175,55,0.5); }
+.yes-btn:hover { background: #ffdf70; transform: scale(1.1); }
+.no-btn { background: #ff4d4d; color: #fff; position: absolute; }
+#game-response { margin-top: 30px; font-size: 1.5rem; color: #d4af37; font-style: italic; min-height: 30px;}
 
 /* Eternal Vow */
 .vow-section { padding: 100px 20px; text-align: center; }
@@ -70,49 +119,37 @@ audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; max-
 .vow-signature .heart { color: #ff4d4d; animation: pulse 1.5s infinite; display: inline-block; margin: 0 10px; }
 
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* =========================================
-   Mobile Fixes (ফোনের জন্য স্ক্রিন সাইজ ঠিক করা) 
-   ========================================= */
+/* Mobile Fixes */
 @media (max-width: 768px) {
     .main-heading { font-size: 3rem; letter-spacing: 2px; }
-    .sub-heading { font-size: 0.9rem; }
     .section-title { font-size: 2rem; margin-bottom: 30px; }
     
-    /* Padding adjustments for all sections on mobile */
-    .timeline-section, .memory-lane, .reasons-section, .muse-section, .poetry-section, .bucket-list, .vow-section {
-        padding: 50px 15px;
-    }
+    .timeline-section, .memory-lane, .reasons-section, .muse-section, .poetry-section, .bucket-list, .vow-section, .promises-section, .love-notes-section, .game-section { padding: 50px 15px; }
 
-    /* Timeline Mobile Fix */
     .timeline { padding-left: 20px; }
     .timeline-dot { left: -31px; width: 16px; height: 16px; }
 
-    /* Memory Lane Mobile Fix (এখানেই মূলত সমস্যা হচ্ছিল) */
-    .memory-card, .memory-card.reverse { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 20px; 
-    }
+    .counter-container { flex-wrap: wrap; gap: 10px; }
+    .time-box { width: calc(50% - 5px); padding: 15px; }
+    .time-box span { font-size: 2rem; }
+
+    .memory-card, .memory-card.reverse { flex-direction: column; text-align: center; gap: 20px; }
     .img-box, .text-box { width: 100%; }
     .img-box { height: 260px; }
-    .text-box h3 { font-size: 1.6rem; }
 
-    /* Audio Player Fix */
-    audio { width: 100%; }
-
-    /* Typewriter Mobile Fix */
+    .envelope-container { padding: 30px 20px; }
     .typewriter-container { font-size: 1.1rem; line-height: 1.6; }
-
-    /* Bucket List Mobile Fix */
     .bucket-item { padding: 15px; flex-direction: column; text-align: center; gap: 10px; }
-    .bucket-item span { font-size: 1.5rem; }
-
-    /* Eternal Vow Mobile Fix */
+    
     .vow-container { flex-direction: column; }
     .vow-image, .vow-content { width: 100%; }
     .vow-image { height: 250px; }
     .image-overlay { background: linear-gradient(to bottom, transparent, rgba(10,10,10,0.9)); }
     .vow-content { padding: 25px; text-align: center; }
     .vow-signature { justify-content: center; }
+
+    .game-question { font-size: 1.5rem; }
+    .no-btn { position: static; margin-top: 15px; display: block; margin: 15px auto 0; } /* Mobile a static rakha valo */
 }

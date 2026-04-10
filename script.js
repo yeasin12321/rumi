@@ -40,20 +40,17 @@ drawStars();
 // 2. GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
 
-// Timeline items
 gsap.utils.toArray('.timeline-item').forEach(item => {
-    gsap.to(item, {
-        scrollTrigger: { trigger: item, start: "top 90%" },
-        opacity: 1, x: 0, duration: 1
-    });
+    gsap.to(item, { scrollTrigger: { trigger: item, start: "top 90%" }, opacity: 1, x: 0, duration: 1 });
 });
 
-// Memory cards
 gsap.utils.toArray('.memory-card').forEach(card => {
-    gsap.to(card, {
-        scrollTrigger: { trigger: card, start: "top 85%" },
-        opacity: 1, y: 0, duration: 1
-    });
+    gsap.to(card, { scrollTrigger: { trigger: card, start: "top 85%" }, opacity: 1, y: 0, duration: 1 });
+});
+
+gsap.from(".vow-container", {
+    scrollTrigger: { trigger: ".vow-section", start: "top 80%" },
+    opacity: 0, scale: 0.9, duration: 1.5
 });
 
 // 3. Generate 18 Reasons
@@ -73,33 +70,24 @@ reasons.forEach((reason, index) => {
     grid.appendChild(card);
 });
 
-// 4. Typewriter Effect (Restored Original Long Text)
+// 4. Typewriter Effect
 const poem = `"প্রিয়,
+তুমি কি জানো আমি তোমাকে কতটা ভালোবাসি? মাঝে মাঝে মনে হয়, আমার এই ভালোবাসার গভীরতা মাপার মতো কোনো মাপকাঠি এই পৃথিবীতে নেই। যখন প্রথম তোমাকে দেখেছিলাম, তখন থেকেই আমার জীবনের গল্পটা বদলে গেছে।
 
-তুমি কি জানো আমি তোমাকে কতটা ভালোবাসি? মাঝে মাঝে মনে হয়, আমার এই ভালোবাসার গভীরতা মাপার মতো কোনো মাপকাঠি এই পৃথিবীতে নেই। যখন প্রথম তোমাকে দেখেছিলাম, তখন থেকেই আমার জীবনের গল্পটা বদলে গেছে। তোমার ওই মিষ্টি হাসি আমার সব দুঃখ ভুলিয়ে দেওয়ার জন্য যথেষ্ট। আমার প্রতিটি চিন্তায়, প্রতিটি কামনায় শুধু তোমারই নাম মিশে থাকে।
+সারাদিনের ক্লান্তি শেষে যখন তোমার সাথে কথা বলি, তখন মনে হয় আমি পৃথিবীর সবথেকে সুখী মানুষ। তোমার হাত ধরে বাকিটা জীবন পার করে দেওয়ার স্বপ্ন আমি প্রতিদিন দেখি। তুমি শুধু আমার ভালোবাসাই নও, তুমি আমার বেঁচে থাকার প্রেরণা।
 
-সারাদিনের ক্লান্তি শেষে যখন তোমার সাথে কথা বলি, তখন মনে হয় আমি পৃথিবীর সবথেকে সুখী মানুষ। তোমার হাত ধরে বাকিটা জীবন পার করে দেওয়ার স্বপ্ন আমি প্রতিদিন দেখি। তুমি শুধু আমার ভালোবাসাই নও, তুমি আমার বেঁচে থাকার প্রেরণা। মাঝে মাঝে আমরা ঝগড়া করি, অভিমান করি, কিন্তু দিনশেষে আমার সবটুকু শান্তি শুধু তোমাকেই ঘিরে।
-
-আমি কথা দিচ্ছি, পরিস্থিতির যাই হোক না কেন, আমি কখনও তোমার হাত ছাড়ব না। তোমার সব আবদার, সব জেদ আমি সারাজীবন এভাবেই সহ্য করে যেতে চাই। যখন তুমি পাশে থাকো, তখন মনে হয় আমি যেকোনো বাধা জয় করতে পারব। আমার অন্ধকার জীবনে তুমি হলে এক টুকরো উজ্জ্বল আলো। তোমাকে ছাড়া একটা মুহূর্ত কাটানোও এখন আমার কাছে অনেক কঠিন মনে হয়।
-
-জানি না ভাগ্যে কী আছে, তবে আমি সৃষ্টিকর্তার কাছে প্রতিবার শুধু তোমাকেই চাই। তোমার চোখে যে মায়া আছে, তাতে আমি বারবার হার মানতে রাজি। তুমি আমার জীবনের সেই শ্রেষ্ঠ উপহার, যা আমি সারাজীবন আগলে রাখতে চাই। আমার ভালোবাসা তোমার জন্য কোনোদিনও কমবে উল্লেখযোগ্য না, বরং সময়ের সাথে সাথে তা আরও গভীর হবে।
-
-আমি তোমাকে কতটা ভালোবাসি তা হয়তো ভাষায় বলে বোঝানো সম্ভব নয়। শুধু এটুকুই বলব, আমার শেষ নিঃশ্বাস পর্যন্ত তুমিই হবে আমার একমাত্র আপনজন। ভালো থেকো আমার প্রিয় মানুষটি, সবসময় আমার হৃদয়ের খুব কাছাকাছি থেকো। আমি তোমাকে অনেক অনেক বেশি ভালোবাসি।"`;
+আমি কথা দিচ্ছি, পরিস্থিতি যাই হোক না কেন, আমি কখনও তোমার হাত ছাড়ব না। তোমার চোখে যে মায়া আছে, তাতে আমি বারবার হার মানতে রাজি। তুমি আমার জীবনের সেই শ্রেষ্ঠ উপহার, যা আমি সারাজীবন আগলে রাখতে চাই। আমি তোমাকে অনেক অনেক বেশি ভালোবাসি।"`;
 
 let i = 0;
 const speed = 40; 
 const typeTarget = document.getElementById("typewriter-text");
 let typed = false;
 
-// Trigger now points back to .poetry-section
 ScrollTrigger.create({
     trigger: ".poetry-section",
     start: "top 65%",
     onEnter: () => {
-        if(!typed) {
-            typeWriter();
-            typed = true;
-        }
+        if(!typed) { typeWriter(); typed = true; }
     }
 });
 
@@ -115,8 +103,68 @@ function typeWriter() {
     }
 }
 
-// 5. Vow Animation
-gsap.from(".vow-container", {
-    scrollTrigger: { trigger: ".vow-section", start: "top 80%" },
-    opacity: 0, scale: 0.9, duration: 1.5
+// 5. Love Counter
+const startDate = new Date("September 14, 2024 00:00:00").getTime(); 
+
+function updateCounter() {
+    const now = new Date().getTime();
+    const distance = now - startDate;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days.toString().padStart(2, '0');
+    document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+}
+setInterval(updateCounter, 1000);
+updateCounter();
+
+// 6. Secret Message Toggle
+function toggleSecret() {
+    const letter = document.getElementById("secretLetter");
+    letter.classList.toggle("show");
+    const envelopeText = document.querySelector(".click-text");
+    if (letter.classList.contains("show")) {
+        envelopeText.innerText = "A Message From My Heart";
+        envelopeText.style.animation = "none";
+    } else {
+        envelopeText.innerText = "Tap to Open";
+        envelopeText.style.animation = "pulse 2s infinite";
+    }
+}
+
+// 7. Interactive Game (Catch the No button)
+const noBtn = document.getElementById('noBtn');
+
+// PC এর জন্য 'না' বাটন সরানোর লজিক
+noBtn.addEventListener('mouseover', () => {
+    // স্ক্রিনের সাইজ চেক করে শুধুমাত্র ডেক্সটপেই সরাবে
+    if (window.innerWidth > 768) { 
+        const container = document.querySelector('.game-section');
+        const containerRect = container.getBoundingClientRect();
+        
+        const maxX = containerRect.width - noBtn.offsetWidth - 50;
+        const maxY = containerRect.height - noBtn.offsetHeight - 50;
+        
+        const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+        const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+        
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = randomX + 'px';
+        noBtn.style.top = randomY + 'px';
+    }
 });
+
+// যদি ফোনে 'না' ক্লিক করে ফেলে
+noBtn.addEventListener('click', () => {
+    alert("এটা তো কোনো অপশনই না! আবার ভাবো! 😡");
+});
+
+function sayYes() {
+    document.getElementById('game-response').innerText = "আমি জানতাম! আমিও তোমাকে অনেক বেশি ভালোবাসি রুমী! ❤️";
+    noBtn.style.display = 'none'; // 'না' বাটন গায়েব হয়ে যাবে
+}

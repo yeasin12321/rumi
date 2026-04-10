@@ -50,6 +50,17 @@
         </div>
     </section>
 
+    <section class="counter-section">
+        <h2 class="section-title">Every Second With You</h2>
+        <div class="counter-container" id="love-counter">
+            <div class="time-box"><span id="days">00</span><p>Days</p></div>
+            <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+            <div class="time-box"><span id="minutes">00</span><p>Minutes</p></div>
+            <div class="time-box"><span id="seconds">00</span><p>Seconds</p></div>
+        </div>
+        <p class="counter-text">আমাদের একসাথে পথচলার প্রতিটি মুহূর্ত আমার কাছে এক একটি উৎসব...</p>
+    </section>
+
     <section class="memory-lane">
         <h2 class="section-title">Constellations of Us</h2>
         <div class="memory-container">
@@ -137,10 +148,43 @@
         </div>
     </section>
 
+    <section class="promises-section">
+        <h2 class="section-title">My Promises to You</h2>
+        <div class="promises-container">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"><h3>Promise #1</h3></div>
+                    <div class="flip-card-back"><p>যাই হয়ে যাক, জীবনে কখনো তোমার হাত ছাড়বো না।</p></div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"><h3>Promise #2</h3></div>
+                    <div class="flip-card-back"><p>তোমার চোখের পানি মুছতে আমি সবসময় তোমার পাশে থাকবো।</p></div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"><h3>Promise #3</h3></div>
+                    <div class="flip-card-back"><p>তোমার সব পাগলামি আর অভিমান আমি হাসিমুখে মেনে নেবো।</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="reasons-section">
         <h2 class="section-title">18 Reasons Why I Love You</h2>
-        <div class="reasons-grid" id="reasons-grid">
-            </div>
+        <div class="reasons-grid" id="reasons-grid"></div>
+    </section>
+
+    <section class="love-notes-section">
+        <h2 class="section-title">Little Notes for You</h2>
+        <div class="notes-container">
+            <div class="note yellow">তুমি আমার জীবনের সেই স্বপ্ন, যা সত্যিই পূরণ হয়েছে।</div>
+            <div class="note pink">সারাদিন পর তোমার হাসি দেখলেই আমার সব ক্লান্তি দূর হয়ে যায়।</div>
+            <div class="note blue">আমি শুধু তোমাকে ভালোবাসতে চাই, আজ, কাল এবং অনন্তকাল।</div>
+            <div class="note green">রুমী, তুমি আমার কাছে কোনো অপশন নও, তুমিই আমার সব!</div>
+        </div>
     </section>
 
     <section class="muse-section">
@@ -162,6 +206,18 @@
         </div>
     </section>
 
+    <section class="secret-section">
+        <h2 class="section-title">A Secret For You</h2>
+        <div class="envelope-container" onclick="toggleSecret()">
+            <div class="envelope">
+                <p class="click-text">Tap to Open</p>
+            </div>
+            <div class="secret-letter" id="secretLetter">
+                <p>"রুমী, তুমি আমার সেই কবিতা, যা আমি প্রতিদিন নতুন করে লিখতে চাই। পৃথিবীর সমস্ত ঝড়ঝাপ্টায় আমি থাকবো তোমার ঢাল হয়ে। শুভ জন্মদিন, আমার পৃথিবী।"</p>
+            </div>
+        </div>
+    </section>
+
     <section class="bucket-list">
         <h2 class="section-title">Our Future Bucket List</h2>
         <div class="bucket-container">
@@ -169,6 +225,18 @@
             <div class="bucket-item"><span>🌧</span> বৃষ্টির দুপুরে বারান্দায় বসে একসাথে কফি খাওয়া।</div>
             <div class="bucket-item"><span>🏡</span> এক শান্ত ছোট ঘরে আমাদের আগামীর দিনগুলো সাজানো।</div>
             <div class="bucket-item"><span>👴👵</span> হাত ধরে বুড়ো হওয়া পর্যন্ত একসাথে থাকা।</div>
+        </div>
+    </section>
+
+    <section class="game-section">
+        <h2 class="section-title">Just Answer Me...</h2>
+        <div class="game-container">
+            <p class="game-question">রুমী, তুমি কি আমাকে সবচেয়ে বেশি ভালোবাসো?</p>
+            <div class="game-buttons">
+                <button class="btn yes-btn" onclick="sayYes()">হ্যাঁ, অনেক!</button>
+                <button class="btn no-btn" id="noBtn">উমম.. না!</button>
+            </div>
+            <p id="game-response"></p>
         </div>
     </section>
 
