@@ -46,18 +46,18 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .muse-section { padding: 100px 20px 50px; text-align: center; }
 .audio-box { margin-bottom: 40px; }
 .audio-box p { color: #aaa; margin-bottom: 15px; font-style: italic; font-size: 1.2rem; }
-audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; }
+audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; max-width: 100%; }
 
 /* Original: Echoes of My Heart (Typewriter) */
 .poetry-section { padding: 50px 20px 80px; text-align: center; background: rgba(10,10,10,0.8); border-top: 1px solid #222; border-bottom: 1px solid #222; }
-.typewriter-container { max-width: 800px; margin: 0 auto; min-height: 150px; font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 2; font-style: italic; color: #eee; text-align: left;}
+.typewriter-container { max-width: 800px; margin: 0 auto; min-height: 150px; font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 2; font-style: italic; color: #eee; text-align: left; }
 
 /* Section 5: Bucket List */
 .bucket-list { padding: 80px 20px; }
 .bucket-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
 .bucket-item { background: rgba(212, 175, 55, 0.05); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid transparent; transition: 0.4s; }
 .bucket-item:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.1); transform: scale(1.02); }
-.bucket-item span { font-size: 2rem; }
+.bucket-item span { font-size: 2rem; flex-shrink: 0; }
 
 /* Eternal Vow */
 .vow-section { padding: 100px 20px; text-align: center; }
@@ -67,15 +67,52 @@ audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; }
 .image-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, transparent, rgba(10,10,10,0.8)); }
 .vow-content { width: 55%; padding: 40px; text-align: left; }
 .vow-signature .name { font-family: 'Great Vibes', cursive; font-size: 2rem; color: #d4af37; }
-.vow-signature .heart { color: #ff4d4d; animation: pulse 1.5s infinite; display: inline-block; }
+.vow-signature .heart { color: #ff4d4d; animation: pulse 1.5s infinite; display: inline-block; margin: 0 10px; }
 
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
 
-/* Mobile Fixes */
+/* =========================================
+   Mobile Fixes (ফোনের জন্য স্ক্রিন সাইজ ঠিক করা) 
+   ========================================= */
 @media (max-width: 768px) {
-    .main-heading { font-size: 3rem; }
-    .memory-card, .vow-container { flex-direction: column; }
-    .img-box, .text-box, .vow-image, .vow-content { width: 100%; }
+    .main-heading { font-size: 3rem; letter-spacing: 2px; }
+    .sub-heading { font-size: 0.9rem; }
+    .section-title { font-size: 2rem; margin-bottom: 30px; }
+    
+    /* Padding adjustments for all sections on mobile */
+    .timeline-section, .memory-lane, .reasons-section, .muse-section, .poetry-section, .bucket-list, .vow-section {
+        padding: 50px 15px;
+    }
+
+    /* Timeline Mobile Fix */
+    .timeline { padding-left: 20px; }
+    .timeline-dot { left: -31px; width: 16px; height: 16px; }
+
+    /* Memory Lane Mobile Fix (এখানেই মূলত সমস্যা হচ্ছিল) */
+    .memory-card, .memory-card.reverse { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 20px; 
+    }
+    .img-box, .text-box { width: 100%; }
+    .img-box { height: 260px; }
+    .text-box h3 { font-size: 1.6rem; }
+
+    /* Audio Player Fix */
+    audio { width: 100%; }
+
+    /* Typewriter Mobile Fix */
+    .typewriter-container { font-size: 1.1rem; line-height: 1.6; }
+
+    /* Bucket List Mobile Fix */
+    .bucket-item { padding: 15px; flex-direction: column; text-align: center; gap: 10px; }
+    .bucket-item span { font-size: 1.5rem; }
+
+    /* Eternal Vow Mobile Fix */
+    .vow-container { flex-direction: column; }
+    .vow-image, .vow-content { width: 100%; }
     .vow-image { height: 250px; }
-    .typewriter-container { font-size: 1.1rem; line-height: 1.8; }
+    .image-overlay { background: linear-gradient(to bottom, transparent, rgba(10,10,10,0.9)); }
+    .vow-content { padding: 25px; text-align: center; }
+    .vow-signature { justify-content: center; }
 }
