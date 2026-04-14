@@ -1,15 +1,12 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: #fff; overflow-x: hidden; }
 
-/* Canvas Background */
 #starfield { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: radial-gradient(circle at center, #111 0%, #000 100%); }
 
-/* Typography */
 .main-heading { font-family: 'Cinzel', serif; font-size: 6rem; color: #d4af37; text-shadow: 0 0 20px rgba(212,175,55,0.5); letter-spacing: 5px; margin: 10px 0; }
 .sub-heading { font-size: 1.2rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; }
 .section-title { font-family: 'Cinzel', serif; font-size: 3rem; text-align: center; color: #d4af37; margin-bottom: 60px; }
 
-/* Hero Section */
 .hero-section { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding: 0 20px; }
 .age-text { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #ffb86c; margin-top: 10px; }
 .scroll-indicator { position: absolute; bottom: 30px; color: #888; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; }
@@ -17,14 +14,12 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .wheel { width: 3px; height: 8px; background: #d4af37; border-radius: 2px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); animation: scrollMouse 1.5s infinite; }
 @keyframes scrollMouse { 0% { top: 5px; opacity: 1; } 100% { top: 15px; opacity: 0; } }
 
-/* Section 1: Timeline */
 .timeline-section { padding: 80px 20px; max-width: 800px; margin: 0 auto; }
 .timeline { position: relative; border-left: 2px solid #d4af37; padding-left: 30px; }
 .timeline-item { position: relative; margin-bottom: 50px; opacity: 0; transform: translateX(-30px); }
 .timeline-dot { position: absolute; left: -41px; top: 5px; width: 20px; height: 20px; background: #d4af37; border-radius: 50%; box-shadow: 0 0 10px #d4af37; }
 .timeline-content h3 { color: #d4af37; font-family: 'Cinzel', serif; margin-bottom: 10px; }
 
-/* NEW 1: Counter Section */
 .counter-section { padding: 80px 20px; text-align: center; background: rgba(10, 10, 10, 0.6); border-top: 1px solid #222; border-bottom: 1px solid #222;}
 .counter-container { display: flex; justify-content: center; gap: 20px; max-width: 600px; margin: 0 auto 20px; }
 .time-box { background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; padding: 20px; width: 110px; transition: 0.3s; }
@@ -33,7 +28,6 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .time-box p { font-size: 0.9rem; color: #aaa; text-transform: uppercase; margin-top: 5px; }
 .counter-text { font-style: italic; color: #ccc; font-size: 1.1rem; }
 
-/* Memory Lane */
 .memory-lane { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
 .memory-card { display: flex; align-items: center; gap: 40px; margin-bottom: 80px; opacity: 0; transform: translateY(50px); }
 .memory-card.reverse { flex-direction: row-reverse; }
@@ -43,7 +37,6 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .text-box h3 { font-family: 'Cinzel', serif; font-size: 2rem; color: #d4af37; margin-bottom: 15px; }
 .text-box p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 
-/* NEW 2: Promises (Flip Cards) */
 .promises-section { padding: 80px 20px; text-align: center; }
 .promises-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
 .flip-card { background-color: transparent; width: 280px; height: 300px; perspective: 1000px; }
@@ -55,7 +48,6 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .flip-card-back { background: #d4af37; color: #111; transform: rotateY(180deg); }
 .flip-card-back p { font-size: 1.2rem; font-weight: bold; line-height: 1.6; }
 
-/* Section: 18 Reasons */
 .reasons-section { padding: 80px 20px; background: rgba(255,255,255,0.02); }
 .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
 .reason-card { background: #111; border: 1px solid #d4af3733; padding: 20px; border-radius: 10px; text-align: center; transition: 0.3s; cursor: pointer; }
@@ -63,7 +55,6 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .reason-num { color: #d4af37; font-size: 1.5rem; font-weight: bold; display: block; margin-bottom: 10px; }
 .reason-text { font-size: 0.9rem; color: #ccc; }
 
-/* NEW 3: Love Notes */
 .love-notes-section { padding: 80px 20px; text-align: center; }
 .notes-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
 .note { width: 200px; min-height: 200px; padding: 20px; font-family: 'Great Vibes', cursive; font-size: 1.6rem; color: #333; line-height: 1.4; display: flex; align-items: center; text-align: center; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); transform: rotate(-5deg); transition: 0.3s; cursor: pointer; }
@@ -73,16 +64,18 @@ body { font-family: 'Montserrat', sans-serif; background-color: #030303; color: 
 .note.blue { background: #a2cffe; transform: rotate(5deg); }
 .note.green { background: #b8e0d2; transform: rotate(-2deg); }
 
-/* Muse (Audio) */
+/* UPDATED Muse Section */
 .muse-section { padding: 100px 20px 50px; text-align: center; }
-.audio-box p { color: #aaa; margin-bottom: 15px; font-style: italic; font-size: 1.2rem; }
-audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; max-width: 100%; }
+.songs-flex { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+.audio-box { background: rgba(212, 175, 55, 0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); transition: 0.3s; min-width: 300px; }
+.audio-box:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
+.audio-box p { color: #d4af37; margin-bottom: 20px; font-family: 'Cinzel', serif; font-size: 1.1rem; }
+.singer-name { display: block; margin-top: 15px; font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #aaa; }
+audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); width: 100%; outline: none; }
 
-/* Poetry (Typewriter) */
 .poetry-section { padding: 50px 20px 80px; text-align: center; background: rgba(10,10,10,0.8); border-top: 1px solid #222; border-bottom: 1px solid #222; }
 .typewriter-container { max-width: 800px; margin: 0 auto; min-height: 150px; font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 2; font-style: italic; color: #eee; text-align: left; }
 
-/* NEW 4: Secret Message Section */
 .secret-section { padding: 100px 20px; text-align: center; }
 .envelope-container { cursor: pointer; position: relative; max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.02); border: 1px dashed #d4af37; padding: 40px; border-radius: 15px; transition: 0.4s; }
 .envelope-container:hover { background: rgba(212, 175, 55, 0.05); }
@@ -91,14 +84,12 @@ audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; max-
 .secret-letter.show { display: block; animation: fadeIn 1s ease-in-out; }
 .secret-letter p { font-size: 1.2rem; color: #eee; font-style: italic; line-height: 1.8; }
 
-/* Bucket List */
 .bucket-list { padding: 80px 20px; }
 .bucket-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
 .bucket-item { background: rgba(212, 175, 55, 0.05); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 20px; border: 1px solid transparent; transition: 0.4s; }
 .bucket-item:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.1); transform: scale(1.02); }
 .bucket-item span { font-size: 2rem; flex-shrink: 0; }
 
-/* NEW 5: Game Section (Catch me) */
 .game-section { padding: 80px 20px; text-align: center; position: relative; min-height: 400px;}
 .game-question { font-size: 2rem; color: #d4af37; font-family: 'Cinzel', serif; margin-bottom: 40px; }
 .game-buttons { position: relative; height: 100px; }
@@ -108,7 +99,6 @@ audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; max-
 .no-btn { background: #ff4d4d; color: #fff; position: absolute; }
 #game-response { margin-top: 30px; font-size: 1.5rem; color: #d4af37; font-style: italic; min-height: 30px;}
 
-/* Eternal Vow */
 .vow-section { padding: 100px 20px; text-align: center; }
 .vow-container { max-width: 900px; margin: 0 auto; display: flex; align-items: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px; overflow: hidden; }
 .vow-image { width: 45%; height: 400px; position: relative; }
@@ -121,35 +111,21 @@ audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); outline: none; max-
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Mobile Fixes */
 @media (max-width: 768px) {
     .main-heading { font-size: 3rem; letter-spacing: 2px; }
     .section-title { font-size: 2rem; margin-bottom: 30px; }
-    
-    .timeline-section, .memory-lane, .reasons-section, .muse-section, .poetry-section, .bucket-list, .vow-section, .promises-section, .love-notes-section, .game-section { padding: 50px 15px; }
-
+    .songs-flex { gap: 20px; }
+    .audio-box { min-width: 100%; padding: 20px; }
     .timeline { padding-left: 20px; }
     .timeline-dot { left: -31px; width: 16px; height: 16px; }
-
     .counter-container { flex-wrap: wrap; gap: 10px; }
     .time-box { width: calc(50% - 5px); padding: 15px; }
     .time-box span { font-size: 2rem; }
-
     .memory-card, .memory-card.reverse { flex-direction: column; text-align: center; gap: 20px; }
     .img-box, .text-box { width: 100%; }
     .img-box { height: 260px; }
-
-    .envelope-container { padding: 30px 20px; }
-    .typewriter-container { font-size: 1.1rem; line-height: 1.6; }
-    .bucket-item { padding: 15px; flex-direction: column; text-align: center; gap: 10px; }
-    
     .vow-container { flex-direction: column; }
     .vow-image, .vow-content { width: 100%; }
     .vow-image { height: 250px; }
-    .image-overlay { background: linear-gradient(to bottom, transparent, rgba(10,10,10,0.9)); }
     .vow-content { padding: 25px; text-align: center; }
-    .vow-signature { justify-content: center; }
-
-    .game-question { font-size: 1.5rem; }
-    .no-btn { position: static; margin-top: 15px; display: block; margin: 15px auto 0; } /* Mobile a static rakha valo */
 }

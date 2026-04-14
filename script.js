@@ -1,4 +1,3 @@
-// 1. Starfield Effect
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 let w, h, particles;
@@ -37,7 +36,6 @@ window.addEventListener('resize', initCanvas);
 initCanvas();
 drawStars();
 
-// 2. GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.utils.toArray('.timeline-item').forEach(item => {
@@ -53,7 +51,6 @@ gsap.from(".vow-container", {
     opacity: 0, scale: 0.9, duration: 1.5
 });
 
-// 3. Generate 18 Reasons
 const reasons = [
     "তোমার হাসি", "তোমার মায়া", "তোমার যত্ন", "তোমার পাগলামি", 
     "তোমার গান", "আমাদের স্মৃতি", "তোমার সাহস", "তোমার ধৈর্য",
@@ -70,7 +67,6 @@ reasons.forEach((reason, index) => {
     grid.appendChild(card);
 });
 
-// 4. Typewriter Effect
 const poem = `"প্রিয়,
 তুমি কি জানো আমি তোমাকে কতটা ভালোবাসি? মাঝে মাঝে মনে হয়, আমার এই ভালোবাসার গভীরতা মাপার মতো কোনো মাপকাঠি এই পৃথিবীতে নেই। যখন প্রথম তোমাকে দেখেছিলাম, তখন থেকেই আমার জীবনের গল্পটা বদলে গেছে।
 
@@ -103,7 +99,6 @@ function typeWriter() {
     }
 }
 
-// 5. Love Counter
 const startDate = new Date("September 14, 2024 00:00:00").getTime(); 
 
 function updateCounter() {
@@ -123,7 +118,6 @@ function updateCounter() {
 setInterval(updateCounter, 1000);
 updateCounter();
 
-// 6. Secret Message Toggle
 function toggleSecret() {
     const letter = document.getElementById("secretLetter");
     letter.classList.toggle("show");
@@ -137,12 +131,9 @@ function toggleSecret() {
     }
 }
 
-// 7. Interactive Game (Catch the No button)
 const noBtn = document.getElementById('noBtn');
 
-// PC এর জন্য 'না' বাটন সরানোর লজিক
 noBtn.addEventListener('mouseover', () => {
-    // স্ক্রিনের সাইজ চেক করে শুধুমাত্র ডেক্সটপেই সরাবে
     if (window.innerWidth > 768) { 
         const container = document.querySelector('.game-section');
         const containerRect = container.getBoundingClientRect();
@@ -159,12 +150,11 @@ noBtn.addEventListener('mouseover', () => {
     }
 });
 
-// যদি ফোনে 'না' ক্লিক করে ফেলে
 noBtn.addEventListener('click', () => {
     alert("এটা তো কোনো অপশনই না! আবার ভাবো! 😡");
 });
 
 function sayYes() {
     document.getElementById('game-response').innerText = "আমি জানতাম! আমিও তোমাকে অনেক বেশি ভালোবাসি রুমী! ❤️";
-    noBtn.style.display = 'none'; // 'না' বাটন গায়েব হয়ে যাবে
+    noBtn.style.display = 'none';
 }
