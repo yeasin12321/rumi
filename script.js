@@ -424,7 +424,7 @@ function injectVoiceHTML(container, data, index) {
         <div class="voice-card">
             <h3 class="voice-card-title">${data.title}</h3>
             <audio controls>
-                <source src="${data.src}" type="audio/mpeg">
+                <source src="${data.src}">
             </audio>
         </div>
     `;
