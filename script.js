@@ -158,71 +158,112 @@ function sayYes() {
     document.getElementById('game-response').innerText = "আমি জানতাম! আমিও তোমাকে অনেক বেশি ভালোবাসি রুমী! ❤️";
     noBtn.style.display = 'none';
 }
-// --- Updated Dynamic Google Sheets to Kobita Corner Logic ---
+// --- Updated Book Style Dynamic Kobita Corner ---
 const sheetID = '17K1Vg9zUa0CyPtw7To8bdy8svkSN7glfYH-uOc8lx9Q'; 
 const sheetName = 'Sheet1'; 
-
 const gSheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+
+let allPoems = [];
+let currentPoemIndex = 0;
 
 async function fetchKobitas() {
     const container = document.getElementById('dynamic-kobita-container');
     
     try {
         const response = await fetch(gSheetURL);
-        if (!response.ok) throw new Error("Network response error");
-        
         const text = await response.text();
-        
-        // Safer way to parse the Google Visualization JSON format
         const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
         const data = JSON.parse(jsonStr);
         
-        container.innerHTML = ''; // Clear loading text
-        
-        if (!data.table || !data.table.rows || data.table.rows.length === 0) {
-            container.innerHTML = '<p class="loading-text" style="color:#ffb86c;">শিটে কোনো কবিতা পাওয়া যায়নি।</p>';
-            return;
-        }
+        if (!data.table || !data.table.rows || data.table.rows.length === 0) return;
 
         const rows = data.table.rows;
-        let hasData = false;
 
-        // Loop through the rows (Starting from index 1 to skip headers)
+        // এক্সেলে যতগুলো কবিতা আছে সবগুলোকে একটি লিস্টে (Array) সাজানো হচ্ছে
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
-            
-            // Safe check to avoid empty cell errors
             const cell1 = row.c && row.c[0] ? row.c[0].v : null;
             const cell2 = row.c && row.c[1] ? row.c[1].v : null;
 
             if (cell1 && cell2) {
-                hasData = true;
-                const title = cell1;
-                const poem = String(cell2).replace(/\n/g, '<br>'); // Fix line breaks
-                
-                const card = document.createElement('div');
-                card.className = 'kobita-card';
-                card.innerHTML = `
-                    <h3 class="kobita-title">${title}</h3>
-                    <div class="kobita-body">${poem}</div>
-                `;
-                container.appendChild(card);
+                allPoems.push({
+                    title: cell1,
+                    poem: String(cell2).replace(/\n/g, '<br>')
+                });
             }
         }
 
-        if (!hasData) {
-             container.innerHTML = '<p class="loading-text" style="color:#ffb86c;">অনুগ্রহ করে এক্সেলে ২ নম্বর সারি (Row 2) থেকে কবিতা লেখা শুরু করুন।</p>';
-        } else {
-            // Animate cards
-            gsap.utils.toArray('.kobita-card').forEach(card => {
-                gsap.from(card, { scrollTrigger: { trigger: card, start: "top 85%" }, opacity: 0, y: 30, duration: 1 });
-            });
+        if (allPoems.length > 0) {
+             renderPoem(0, 'first'); // প্রথম কবিতা লোড করা
         }
 
     } catch (error) {
-        // This will print the exact error on the website
-        container.innerHTML = `<p class="loading-text" style="color:#ff4d4d;">কোডে বা লিংকে সমস্যা হচ্ছে। <br><br><span style="font-size:0.9rem; color:#aaa;">Error: ${error.message}</span></p>`;
-        console.error("Google Sheets Fetch Error:", error);
+        container.innerHTML = `<p class="loading-text" style="color:#ff4d4d;">Error loading poems.</p>`;
+    }
+}
+
+function renderPoem(index, direction = 'next') {
+    const container = document.getElementById('dynamic-kobita-container');
+    const poemData = allPoems[index];
+    
+    // এনিমেশন চলার সময় বাটনগুলো লক করে দেওয়া
+    document.getElementById('prev-btn').disabled = true;
+    document.getElementById('next-btn').disabled = true;
+
+    // পাতা উল্টানোর 3D এনিমেশনের ম্যাথ লজিক (GSAP)
+    const flipOutAngle = direction === 'next' ? -90 : 90;
+    const flipInAngle = direction === 'next' ? 90 : -90;
+    const transformOriginOut = direction === 'next' ? "left center" : "right center";
+    const transformOriginIn = direction === 'next' ? "right center" : "left center";
+
+    if(direction === 'first') {
+         injectPoemHTML(container, poemData, index);
+    } else {
+        // বর্তমান পাতা উল্টে বিদায় নেওয়া
+        gsap.to(container, {
+            rotationY: flipOutAngle,
+            transformOrigin: transformOriginOut,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power1.in",
+            onComplete: () => {
+                injectPoemHTML(container, poemData, index);
+                
+                // নতুন পাতা উল্টে সামনে আসা
+                gsap.fromTo(container, 
+                    { rotationY: flipInAngle, transformOrigin: transformOriginIn, opacity: 0 },
+                    { rotationY: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+                );
+            }
+        });
+    }
+}
+
+function injectPoemHTML(container, poemData, index) {
+    container.innerHTML = `
+        <div class="kobita-card">
+            <h3 class="kobita-title">${poemData.title}</h3>
+            <div class="kobita-body">${poemData.poem}</div>
+        </div>
+    `;
+    document.getElementById('page-indicator').innerText = `পৃষ্ঠা ${index + 1} / ${allPoems.length}`;
+    
+    // প্রথম বা শেষ পাতায় পৌঁছালে বাটনগুলো হাইড বা ডিসেবল করা
+    document.getElementById('prev-btn').disabled = (index === 0);
+    document.getElementById('next-btn').disabled = (index === allPoems.length - 1);
+}
+
+function nextPoem() {
+    if (currentPoemIndex < allPoems.length - 1) {
+        currentPoemIndex++;
+        renderPoem(currentPoemIndex, 'next');
+    }
+}
+
+function prevPoem() {
+    if (currentPoemIndex > 0) {
+        currentPoemIndex--;
+        renderPoem(currentPoemIndex, 'prev');
     }
 }
 

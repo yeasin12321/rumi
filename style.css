@@ -137,3 +137,12 @@ audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); width: 100%; outlin
 .kobita-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #d4af37; margin-bottom: 15px; border-bottom: 1px dashed rgba(212, 175, 55, 0.3); padding-bottom: 10px; }
 .kobita-body { font-family: 'Playfair Display', serif; font-size: 1.2rem; line-height: 2; color: #eee; font-style: italic; }
 .loading-text { color: #d4af37; font-family: 'Cinzel', serif; font-size: 1.2rem; animation: pulse 1.5s infinite; }
+/* --- Kobita Corner Book Style Details --- */
+.book-wrapper { max-width: 800px; margin: 0 auto; perspective: 1500px; }
+#dynamic-kobita-container { transform-style: preserve-3d; }
+.kobita-card { background: rgba(212, 175, 55, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 15px; padding: 40px; text-align: left; min-height: 350px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.book-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding: 0 20px; }
+.book-btn { background: transparent; border: 1px solid #d4af37; color: #d4af37; padding: 10px 20px; border-radius: 30px; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: 0.3s; font-size: 1rem; }
+.book-btn:hover:not(:disabled) { background: #d4af37; color: #000; box-shadow: 0 0 15px rgba(212,175,55,0.5); }
+.book-btn:disabled { opacity: 0.3; cursor: not-allowed; border-color: #555; color: #555; }
+.page-count { color: #d4af37; font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 2px; }

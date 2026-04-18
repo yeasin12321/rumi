@@ -206,19 +206,15 @@
     </section>
     <section class="kobita-corner-section" id="kobita-corner">
         <h2 class="section-title">Kobita Corner</h2>
-        <div class="kobita-container" id="dynamic-kobita-container">
-            <p class="loading-text">রুমীর জন্য লেখা কবিতাগুলো লোড হচ্ছে...</p>
-        </div>
-    </section>
-
-    <section class="secret-section">
-        <h2 class="section-title">A Secret For You</h2>
-        <div class="envelope-container" onclick="toggleSecret()">
-            <div class="envelope">
-                <p class="click-text">Tap to Open</p>
+        <div class="book-wrapper">
+            <div class="kobita-container" id="dynamic-kobita-container">
+                <p class="loading-text">রুমীর জন্য লেখা কবিতাগুলো লোড হচ্ছে...</p>
             </div>
-            <div class="secret-letter" id="secretLetter">
-                <p>"রুমী, তুমি আমার সেই কবিতা, যা আমি প্রতিদিন নতুন করে লিখতে চাই। পৃথিবীর সমস্ত ঝড়ঝাপ্টায় আমি থাকবো তোমার ঢাল হয়ে। শুভ জন্মদিন, আমার পৃথিবী।"</p>
+            
+            <div class="book-controls">
+                <button class="book-btn" id="prev-btn" onclick="prevPoem()">&#10094; আগের পাতা</button>
+                <span id="page-indicator" class="page-count"></span>
+                <button class="book-btn" id="next-btn" onclick="nextPoem()">পরের পাতা &#10095;</button>
             </div>
         </div>
     </section>
