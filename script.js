@@ -158,10 +158,8 @@ function sayYes() {
     document.getElementById('game-response').innerText = "আমি জানতাম! আমিও তোমাকে অনেক বেশি ভালোবাসি রুমী! ❤️";
     noBtn.style.display = 'none';
 }
-// --- Google Sheets to Kobita Corner Logic ---
-
-// এখানে আপনার গুগল শিটের আইডি দিতে হবে (নিচে নিয়ম দেওয়া হলো)
-const sheetID = 'YOUR_SPREADSHEET_ID_HERE'; 
+// --- Updated Dynamic Google Sheets to Kobita Corner Logic ---
+const sheetID = '17K1Vg9zUa0CyPtw7To8bdy8svkSN7glfYH-uOc8lx9Q'; 
 const sheetName = 'Sheet1'; 
 
 const gSheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
@@ -169,27 +167,38 @@ const gSheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx
 async function fetchKobitas() {
     const container = document.getElementById('dynamic-kobita-container');
     
-    if(sheetID === '17K1Vg9zUa0CyPtw7To8bdy8svkSN7glfYH-uOc8lx9Q') {
-        container.innerHTML = '<p class="loading-text" style="color:#ffb86c;">Please enter your Google Sheet ID in script.js</p>';
-        return;
-    }
-
     try {
         const response = await fetch(gSheetURL);
+        if (!response.ok) throw new Error("Network response error");
+        
         const text = await response.text();
         
-        // গুগল শিট থেকে আসা ডেটাকে JSON এ রূপান্তর করা
-        const jsonStr = text.match(/(?<=.*\().*(?=\);)/s)[0];
+        // Safer way to parse the Google Visualization JSON format
+        const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
         const data = JSON.parse(jsonStr);
         
-        container.innerHTML = ''; // লোডিং টেক্সট সরিয়ে ফেলা
-        const rows = data.table.rows;
+        container.innerHTML = ''; // Clear loading text
+        
+        if (!data.table || !data.table.rows || data.table.rows.length === 0) {
+            container.innerHTML = '<p class="loading-text" style="color:#ffb86c;">শিটে কোনো কবিতা পাওয়া যায়নি।</p>';
+            return;
+        }
 
-        // টেবিলের প্রতিটি সারির (Row) জন্য একটি করে কার্ড তৈরি করা
-        rows.forEach(row => {
-            if(row.c[0] && row.c[1]) {
-                const title = row.c[0].v;
-                const poem = row.c[1].v.replace(/\n/g, '<br>'); // এক্সেলের লাইনব্রেক HTML এ ঠিক করা
+        const rows = data.table.rows;
+        let hasData = false;
+
+        // Loop through the rows (Starting from index 1 to skip headers)
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            
+            // Safe check to avoid empty cell errors
+            const cell1 = row.c && row.c[0] ? row.c[0].v : null;
+            const cell2 = row.c && row.c[1] ? row.c[1].v : null;
+
+            if (cell1 && cell2) {
+                hasData = true;
+                const title = cell1;
+                const poem = String(cell2).replace(/\n/g, '<br>'); // Fix line breaks
                 
                 const card = document.createElement('div');
                 card.className = 'kobita-card';
@@ -199,16 +208,21 @@ async function fetchKobitas() {
                 `;
                 container.appendChild(card);
             }
-        });
+        }
 
-        // নতুন কার্ডগুলোতে এনিমেশন যুক্ত করা
-        gsap.utils.toArray('.kobita-card').forEach(card => {
-            gsap.from(card, { scrollTrigger: { trigger: card, start: "top 85%" }, opacity: 0, y: 30, duration: 1 });
-        });
+        if (!hasData) {
+             container.innerHTML = '<p class="loading-text" style="color:#ffb86c;">অনুগ্রহ করে এক্সেলে ২ নম্বর সারি (Row 2) থেকে কবিতা লেখা শুরু করুন।</p>';
+        } else {
+            // Animate cards
+            gsap.utils.toArray('.kobita-card').forEach(card => {
+                gsap.from(card, { scrollTrigger: { trigger: card, start: "top 85%" }, opacity: 0, y: 30, duration: 1 });
+            });
+        }
 
     } catch (error) {
-        container.innerHTML = '<p class="loading-text" style="color:#ff4d4d;">কবিতা লোড হতে ব্যর্থ হয়েছে। গুগল শিটের পারমিশন চেক করুন।</p>';
-        console.error("Error loading poems: ", error);
+        // This will print the exact error on the website
+        container.innerHTML = `<p class="loading-text" style="color:#ff4d4d;">কোডে বা লিংকে সমস্যা হচ্ছে। <br><br><span style="font-size:0.9rem; color:#aaa;">Error: ${error.message}</span></p>`;
+        console.error("Google Sheets Fetch Error:", error);
     }
 }
 
