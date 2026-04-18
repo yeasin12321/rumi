@@ -158,3 +158,58 @@ function sayYes() {
     document.getElementById('game-response').innerText = "আমি জানতাম! আমিও তোমাকে অনেক বেশি ভালোবাসি রুমী! ❤️";
     noBtn.style.display = 'none';
 }
+// --- Google Sheets to Kobita Corner Logic ---
+
+// এখানে আপনার গুগল শিটের আইডি দিতে হবে (নিচে নিয়ম দেওয়া হলো)
+const sheetID = 'YOUR_SPREADSHEET_ID_HERE'; 
+const sheetName = 'Sheet1'; 
+
+const gSheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+
+async function fetchKobitas() {
+    const container = document.getElementById('dynamic-kobita-container');
+    
+    if(sheetID === '17K1Vg9zUa0CyPtw7To8bdy8svkSN7glfYH-uOc8lx9Q') {
+        container.innerHTML = '<p class="loading-text" style="color:#ffb86c;">Please enter your Google Sheet ID in script.js</p>';
+        return;
+    }
+
+    try {
+        const response = await fetch(gSheetURL);
+        const text = await response.text();
+        
+        // গুগল শিট থেকে আসা ডেটাকে JSON এ রূপান্তর করা
+        const jsonStr = text.match(/(?<=.*\().*(?=\);)/s)[0];
+        const data = JSON.parse(jsonStr);
+        
+        container.innerHTML = ''; // লোডিং টেক্সট সরিয়ে ফেলা
+        const rows = data.table.rows;
+
+        // টেবিলের প্রতিটি সারির (Row) জন্য একটি করে কার্ড তৈরি করা
+        rows.forEach(row => {
+            if(row.c[0] && row.c[1]) {
+                const title = row.c[0].v;
+                const poem = row.c[1].v.replace(/\n/g, '<br>'); // এক্সেলের লাইনব্রেক HTML এ ঠিক করা
+                
+                const card = document.createElement('div');
+                card.className = 'kobita-card';
+                card.innerHTML = `
+                    <h3 class="kobita-title">${title}</h3>
+                    <div class="kobita-body">${poem}</div>
+                `;
+                container.appendChild(card);
+            }
+        });
+
+        // নতুন কার্ডগুলোতে এনিমেশন যুক্ত করা
+        gsap.utils.toArray('.kobita-card').forEach(card => {
+            gsap.from(card, { scrollTrigger: { trigger: card, start: "top 85%" }, opacity: 0, y: 30, duration: 1 });
+        });
+
+    } catch (error) {
+        container.innerHTML = '<p class="loading-text" style="color:#ff4d4d;">কবিতা লোড হতে ব্যর্থ হয়েছে। গুগল শিটের পারমিশন চেক করুন।</p>';
+        console.error("Error loading poems: ", error);
+    }
+}
+
+fetchKobitas();
