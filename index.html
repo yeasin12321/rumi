@@ -240,6 +240,42 @@
             <p id="game-response"></p>
         </div>
     </section>
+    <section class="agreement-section">
+        <h2 class="section-title">The Forever Agreement</h2>
+        <div class="agreement-card">
+            <p class="agreement-text">
+                "আমি, রুমী, সজ্ঞানে এই চুক্তিতে আবদ্ধ হচ্ছি যে, আমি ইয়াছিনের সমস্ত পাগলামি, অভিমান এবং ভালোবাসা সারাজীবনের জন্য হাসিমুখে গ্রহণ করলাম। আজ থেকে আমি শুধু তার।"
+            </p>
+            
+            <div class="fingerprint-container">
+                <div id="fingerprint-btn" class="fingerprint-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12" />
+                        <path d="M5 15.5C5 15.5 7 10 12 10C17 10 19 15.5 19 15.5" />
+                        <path d="M8 19C8 19 9.5 15 12 15C14.5 15 16 19 16 19" />
+                        <path d="M12 22V22" />
+                    </svg>
+                </div>
+                <div class="progress-ring"></div>
+            </div>
+            
+            <p id="agreement-status" class="status-text">চুক্তিতে রাজি থাকলে ফিঙ্গারপ্রিন্ট চেপে ধরে রাখুন</p>
+        </div>
+    </section>
+    <section class="voice-corner-section" id="voice-corner">
+        <h2 class="section-title">Voice Corner</h2>
+        <div class="voice-book-wrapper">
+            <div class="voice-container" id="dynamic-voice-container">
+                <p class="loading-text">ভয়েস নোট লোড হচ্ছে...</p>
+            </div>
+            
+            <div class="book-controls">
+                <button class="book-btn" id="voice-prev-btn" onclick="prevVoice()">&#10094; আগেরটা</button>
+                <span id="voice-page-indicator" class="page-count"></span>
+                <button class="book-btn" id="voice-next-btn" onclick="nextVoice()">পরেরটা &#10095;</button>
+            </div>
+        </div>
+    </section>
 
     <section class="vow-section">
         <div class="vow-container">

@@ -268,3 +268,183 @@ function prevPoem() {
 }
 
 fetchKobitas();
+// --- Forever Agreement Logic ---
+const fingerprintBtn = document.getElementById('fingerprint-btn');
+const statusText = document.getElementById('agreement-status');
+let holdTimer;
+let isAgreed = false;
+
+function startHold(e) {
+    if (isAgreed) return; // একবার রাজি হয়ে গেলে আর কাজ করবে না
+    e.preventDefault(); // মোবাইলে স্ক্রল হওয়া বন্ধ করতে
+    
+    fingerprintBtn.classList.add('scanning');
+    statusText.innerText = 'স্ক্যান করা হচ্ছে... ধরে রাখুন...';
+    statusText.style.color = '#ffb86c';
+
+    // ৩ সেকেন্ড (3000ms) ধরে রাখলে সাকসেস হবে
+    holdTimer = setTimeout(() => {
+        completeAgreement();
+    }, 3000); 
+}
+
+function endHold() {
+    if (isAgreed) return;
+    
+    clearTimeout(holdTimer); // আঙুল সরিয়ে নিলে টাইমার বাতিল হবে
+    fingerprintBtn.classList.remove('scanning');
+    
+    // আবার আগের অবস্থায় ফিরে যাওয়া
+    statusText.innerText = 'চুক্তিতে রাজি থাকলে ফিঙ্গারপ্রিন্ট চেপে ধরে রাখুন';
+    statusText.style.color = '#aaa';
+}
+
+function completeAgreement() {
+    isAgreed = true;
+    fingerprintBtn.classList.remove('scanning');
+    fingerprintBtn.classList.add('agreed');
+    
+    // আইকন পরিবর্তন করে হার্ট বসানো
+    fingerprintBtn.innerHTML = '❤'; 
+    
+    // স্ট্যাটাস টেক্সট পরিবর্তন
+    statusText.innerText = 'চুক্তি সম্পন্ন হয়েছে! আপনি এখন আজীবনের জন্য আবদ্ধ।';
+    statusText.classList.add('success');
+    
+    // স্পেশাল কনফেটি বা এনিমেশন (ঐচ্ছিক)
+    createConfetti();
+}
+
+// মাউস ইভেন্ট (ল্যাপটপের জন্য)
+fingerprintBtn.addEventListener('mousedown', startHold);
+fingerprintBtn.addEventListener('mouseup', endHold);
+fingerprintBtn.addEventListener('mouseleave', endHold);
+
+// টাচ ইভেন্ট (মোবাইলের জন্য)
+fingerprintBtn.addEventListener('touchstart', startHold, {passive: false});
+fingerprintBtn.addEventListener('touchend', endHold);
+fingerprintBtn.addEventListener('touchcancel', endHold);
+
+// ছোট্ট কনফেটি এনিমেশন (সাকসেস হওয়ার পর)
+function createConfetti() {
+    for(let i=0; i<30; i++) {
+        let conf = document.createElement('div');
+        conf.style.position = 'absolute';
+        conf.style.width = '8px';
+        conf.style.height = '8px';
+        conf.style.backgroundColor = i%2==0 ? '#d4af37' : '#ff4d4d';
+        conf.style.left = '50%';
+        conf.style.top = '50%';
+        conf.style.borderRadius = '50%';
+        conf.style.zIndex = '10';
+        fingerprintBtn.parentElement.appendChild(conf);
+        
+        gsap.to(conf, {
+            x: (Math.random() - 0.5) * 200,
+            y: (Math.random() - 0.5) * 200 - 100,
+            opacity: 0,
+            duration: 1 + Math.random(),
+            ease: "power2.out",
+            onComplete: () => conf.remove()
+        });
+    }
+}
+// --- Updated Voice Corner with Page Flip Logic ---
+const voiceSheetName = 'VoiceNotes'; 
+const voiceSheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${voiceSheetName}`;
+
+let allVoiceNotes = [];
+let currentVoiceIndex = 0;
+
+async function fetchVoiceNotes() {
+    const container = document.getElementById('dynamic-voice-container');
+    try {
+        const response = await fetch(voiceSheetURL);
+        const text = await response.text();
+        const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const data = JSON.parse(jsonStr);
+        
+        if (!data.table || !data.table.rows || data.table.rows.length === 0) return;
+
+        const rows = data.table.rows;
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            const title = row.c && row.c[0] ? row.c[0].v : null;
+            const link = row.c && row.c[1] ? row.c[1].v : null;
+
+            if (title && link) {
+                let audioSrc = link;
+                if (audioSrc.includes('drive.google.com/file/d/')) {
+                    const fileId = audioSrc.split('/d/')[1].split('/')[0];
+                    audioSrc = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                }
+                allVoiceNotes.push({ title: title, src: audioSrc });
+            }
+        }
+
+        if (allVoiceNotes.length > 0) {
+            renderVoiceNote(0, 'first');
+        }
+    } catch (error) {
+        container.innerHTML = `<p class="loading-text" style="color:#ff4d4d;">Voice notes load hote somossa hochche.</p>`;
+    }
+}
+
+function renderVoiceNote(index, direction = 'next') {
+    const container = document.getElementById('dynamic-voice-container');
+    const voiceData = allVoiceNotes[index];
+    
+    document.getElementById('voice-prev-btn').disabled = true;
+    document.getElementById('voice-next-btn').disabled = true;
+
+    const flipOut = direction === 'next' ? -90 : 90;
+    const flipIn = direction === 'next' ? 90 : -90;
+
+    if(direction === 'first') {
+        injectVoiceHTML(container, voiceData, index);
+    } else {
+        gsap.to(container, {
+            rotationY: flipOut,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power1.in",
+            onComplete: () => {
+                injectVoiceHTML(container, voiceData, index);
+                gsap.fromTo(container, 
+                    { rotationY: flipIn, opacity: 0 },
+                    { rotationY: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+                );
+            }
+        });
+    }
+}
+
+function injectVoiceHTML(container, data, index) {
+    container.innerHTML = `
+        <div class="voice-card">
+            <h3 class="voice-card-title">${data.title}</h3>
+            <audio controls>
+                <source src="${data.src}" type="audio/mpeg">
+            </audio>
+        </div>
+    `;
+    document.getElementById('voice-page-indicator').innerText = `Voice ${index + 1} / ${allVoiceNotes.length}`;
+    document.getElementById('voice-prev-btn').disabled = (index === 0);
+    document.getElementById('voice-next-btn').disabled = (index === allVoiceNotes.length - 1);
+}
+
+function nextVoice() {
+    if (currentVoiceIndex < allVoiceNotes.length - 1) {
+        currentVoiceIndex++;
+        renderVoiceNote(currentVoiceIndex, 'next');
+    }
+}
+
+function prevVoice() {
+    if (currentVoiceIndex > 0) {
+        currentVoiceIndex--;
+        renderVoiceNote(currentVoiceIndex, 'prev');
+    }
+}
+
+fetchVoiceNotes();

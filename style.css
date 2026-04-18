@@ -146,3 +146,60 @@ audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); width: 100%; outlin
 .book-btn:hover:not(:disabled) { background: #d4af37; color: #000; box-shadow: 0 0 15px rgba(212,175,55,0.5); }
 .book-btn:disabled { opacity: 0.3; cursor: not-allowed; border-color: #555; color: #555; }
 .page-count { color: #d4af37; font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 2px; }
+/* --- Forever Agreement Styles --- */
+.agreement-section { padding: 80px 20px; text-align: center; }
+.agreement-card { max-width: 600px; margin: 0 auto; background: rgba(20, 20, 20, 0.8); border: 1px dashed #d4af37; border-radius: 15px; padding: 40px 20px; box-shadow: 0 0 20px rgba(212,175,55,0.1); }
+.agreement-text { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #eee; line-height: 1.8; font-style: italic; margin-bottom: 40px; }
+
+.fingerprint-container { position: relative; width: 100px; height: 100px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; }
+.fingerprint-btn { width: 80px; height: 80px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; cursor: pointer; transition: 0.3s; z-index: 2; position: relative; }
+.fingerprint-btn svg { width: 50px; height: 50px; }
+
+/* Pulse animation before touching */
+.fingerprint-btn { animation: pulseHeartbeat 2s infinite; }
+@keyframes pulseHeartbeat { 0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); } 70% { box-shadow: 0 0 0 20px rgba(212,175,55,0); } 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); } }
+
+/* The scanning ring */
+.progress-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 3px solid transparent; border-top-color: #d4af37; opacity: 0; z-index: 1; }
+
+/* When user holds down */
+.fingerprint-btn.scanning { animation: none; background: rgba(212,175,55,0.3); color: #fff; transform: scale(0.95); }
+.fingerprint-btn.scanning + .progress-ring { opacity: 1; animation: spinProgress 3s linear forwards; }
+@keyframes spinProgress { 0% { transform: rotate(0deg); } 100% { transform: rotate(1080deg); border-color: #d4af37; } }
+
+/* Success State */
+.fingerprint-btn.agreed { background: #d4af37; color: #000; animation: none; pointer-events: none; transform: scale(1.1); box-shadow: 0 0 30px #d4af37; border: none; font-size: 2.5rem; }
+.fingerprint-btn.agreed svg { display: none; }
+.status-text { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #aaa; margin-top: 15px; min-height: 30px; transition: 0.3s; }
+.status-text.success { color: #d4af37; font-weight: bold; font-size: 1.3rem; animation: fadeIn 1s; }
+/* --- Voice Corner Book Style --- */
+.voice-book-wrapper { max-width: 700px; margin: 0 auto; perspective: 1500px; }
+#dynamic-voice-container { transform-style: preserve-3d; }
+
+.voice-card { 
+    background: rgba(212, 175, 55, 0.03); 
+    border: 1px solid rgba(212, 175, 55, 0.2); 
+    border-radius: 15px; 
+    padding: 50px 30px; 
+    text-align: center; 
+    min-height: 300px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+}
+
+.voice-card-title { 
+    font-family: 'Cinzel', serif; 
+    font-size: 1.6rem; 
+    color: #d4af37; 
+    margin-bottom: 30px; 
+    border-bottom: 1px dashed rgba(212, 175, 55, 0.3); 
+    padding-bottom: 15px; 
+}
+
+.voice-card audio { 
+    width: 100%; 
+    filter: sepia(100%) saturate(50%) hue-rotate(10deg); 
+    outline: none; 
+}
