@@ -203,3 +203,18 @@ audio { filter: sepia(100%) saturate(50%) hue-rotate(10deg); width: 100%; outlin
     filter: sepia(100%) saturate(50%) hue-rotate(10deg); 
     outline: none; 
 }
+.compatibility-section { padding: 80px 20px; text-align: center; background: rgba(10, 10, 10, 0.5); }
+.calc-container { max-width: 600px; margin: 0 auto; background: rgba(212, 175, 55, 0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); }
+.calc-desc { color: #aaa; margin-bottom: 30px; font-style: italic; }
+.input-group { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 30px; }
+.input-group input { background: transparent; border: none; border-bottom: 2px solid rgba(212, 175, 55, 0.5); color: #fff; padding: 10px; font-family: 'Cinzel', serif; text-align: center; width: 40%; outline: none; transition: 0.3s; }
+.input-group input:focus { border-bottom-color: #d4af37; }
+.heart-icon { font-size: 1.5rem; color: #ff4d4d; animation: pulse 1.5s infinite; }
+
+.result-area { margin-top: 40px; display: none; opacity: 0; }
+.circular-chart { display: block; margin: 10px auto; max-width: 150px; max-height: 150px; }
+.circle-bg { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 2.8; }
+.circle { fill: none; stroke-width: 2.8; stroke-linecap: round; stroke: #d4af37; transition: stroke-dasharray 2s ease-in-out; }
+.percentage-circle { position: relative; width: 150px; margin: 0 auto; }
+.percentage-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; font-family: 'Cinzel', serif; color: #d4af37; }
+.compatibility-msg { margin-top: 20px; font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #ffb86c; }

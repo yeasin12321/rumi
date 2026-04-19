@@ -448,3 +448,49 @@ function prevVoice() {
 }
 
 fetchVoiceNotes();
+function checkCompatibility() {
+    const name1 = document.getElementById('name1').value.trim().toLowerCase();
+    const name2 = document.getElementById('name2').value.trim().toLowerCase();
+    const resultArea = document.getElementById('result-area');
+    const percentNum = document.getElementById('percent-num');
+    const progressCircle = document.getElementById('circle-progress');
+    const msg = document.getElementById('compatibility-msg');
+
+    if (name1 === "" || name2 === "") {
+        alert("দয়া করে নাম দুটি লিখুন!");
+        return;
+    }
+
+    // লজিক চেক: ইয়াছিন কবির এবং রুমী/সাইফা/সাইমা
+    const isYeasin = /yeasin|kabir|ইয়াছিন|কবির/.test(name1);
+    const isRumi = /rumi|saifa|saima|রুমী|সাইফা|সাইমা/.test(name2);
+
+    resultArea.style.display = "block";
+    gsap.to(resultArea, { opacity: 1, y: 0, duration: 1 });
+
+    let finalPercent = 0;
+    let message = "";
+
+    if (isYeasin && isRumi) {
+        finalPercent = 100;
+        message = "You are made for each other! Soulmates forever. ❤️";
+    } else {
+        // অন্যদের জন্য ২০% থেকে ৪০% এর মধ্যে একটি র‍্যান্ডম রেজাল্ট
+        finalPercent = Math.floor(Math.random() * 21) + 20; 
+        message = "Good match, but not quite the perfect destiny.";
+    }
+
+    // এনিমেশন দিয়ে পার্সেন্টেজ বাড়ানো
+    let currentPercent = 0;
+    let interval = setInterval(() => {
+        if (currentPercent >= finalPercent) {
+            clearInterval(interval);
+        } else {
+            currentPercent++;
+            percentNum.innerText = currentPercent;
+            progressCircle.setAttribute('stroke-dasharray', `${currentPercent}, 100`);
+        }
+    }, 20);
+
+    msg.innerText = message;
+}
